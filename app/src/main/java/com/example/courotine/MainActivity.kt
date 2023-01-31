@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.courotine.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 
@@ -33,9 +34,10 @@ class MainActivity : AppCompatActivity() {
             // printAmount()
             // printAmounts()
             //printAmount2()
-            printAmount2()
-            printAmount3()
-            canccelJob()
+//            printAmount2()
+//            printAmount3()
+//            canccelJob()
+            lifecycleScopes()
         }
 
 
@@ -151,5 +153,29 @@ class MainActivity : AppCompatActivity() {
         for (i in 1..1000000){
 
         }
+    }
+    private fun lifecycleScopes(){
+        lifecycleScope.launchWhenCreated{
+            Log.d("nk/lifesycle","started")
+        }
+    }
+    override fun onStop() {
+        super.onStop()
+        Log.d("nk/lifesycle","onstop")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("nk/lifesycle","onstart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("nk/lifesycle","onpause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("nk/lifesycle","onDestroy")
     }
 }
