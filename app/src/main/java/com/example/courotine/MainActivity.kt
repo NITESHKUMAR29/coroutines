@@ -1,6 +1,7 @@
 package com.example.courotine
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -39,8 +40,10 @@ class MainActivity : AppCompatActivity() {
 //            canccelJob()
             lifecycleScopes()
         }
-
-
+        binding.delays.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
 
 
     }
@@ -149,24 +152,27 @@ class MainActivity : AppCompatActivity() {
         return 10000
     }
 
-    private fun longRunTask(){
-        for (i in 1..1000000){
+    private fun longRunTask() {
+        for (i in 1..1000000) {
 
         }
     }
-    private fun lifecycleScopes(){
-        lifecycleScope.launchWhenCreated{
-            Log.d("nk/lifesycle","started")
+
+
+    private fun lifecycleScopes() {
+        lifecycleScope.launchWhenStarted {
+            Log.d("nk/lifesycle", "started")
         }
     }
+
     override fun onStop() {
         super.onStop()
-        Log.d("nk/lifesycle","onstop")
+        Log.d("nk/lifesycle", "onstop")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("nk/lifesycle","onstart")
+        Log.d("nk/lifesycle", "onstart")
     }
 
     override fun onPause() {
